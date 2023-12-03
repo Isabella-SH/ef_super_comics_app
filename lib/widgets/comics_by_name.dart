@@ -1,5 +1,6 @@
 
 import 'package:ef_super_comics_app/models/comic.dart';
+import 'package:ef_super_comics_app/repositories/comic_favorite_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,14 +44,38 @@ class ComicItem extends StatefulWidget {
 
 class _ComicItemState extends State<ComicItem> {
 
+  //atributos
+  bool _favorite=false;
+  ComicFavoriteRepository? _comicFavoriteRepository;
+
+  initialize()async{
+    //_favorite toma el valor que da el metodo del repositorie al pasarle cada entidad
+    _favorite=await _comicFavoriteRepository?.isFavorite(widget.comic)??false;
+    if (mounted){ //si ya se cargo toda la informacion
+      setState(() {
+        _favorite=_favorite;
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    _comicFavoriteRepository=ComicFavoriteRepository();
+    initialize();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
     //creo la imagen
     final image=Image.network(widget.comic.image!);   // '!' porque el atributo esta como '?'
 
-    final my_con= const Icon(
-      Icons.favorite,color:Colors.purple,
+    final my_con= _favorite? const Icon(
+      Icons.delete,color:Colors.greenAccent,
+    ):const Icon(
+      Icons.favorite,color:Colors.greenAccent,
     );
 
     return Card(
@@ -71,6 +96,13 @@ class _ComicItemState extends State<ComicItem> {
           icon: my_con,
           //dentro del click
           onPressed: (){
+            //_favorite cambia
+            setState(() {
+              _favorite=!_favorite;
+            });
+            //se agrega o elimina del repository
+            //si es true lo insert, sino lo elimina
+            _favorite?_comicFavoriteRepository?.insert(widget.comic):_comicFavoriteRepository?.delete(widget.comic);
           },
         ),
       ),
