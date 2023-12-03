@@ -1,6 +1,5 @@
 import 'package:ef_super_comics_app/services/comic_service.dart';
 import 'package:ef_super_comics_app/widgets/comics_by_name.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchComics extends StatefulWidget {
@@ -20,7 +19,7 @@ class _SearchComicsState extends State<SearchComics> {
 
   void searchProducts(String value) async{
     //asigna a mi variable los productos si se hizo una busqueda, sino salen todos los productos
-    comics= await ComicService()?.getByName(value)??[]; //el resultado puede ser vacio
+    comics= await ComicService().getByName(value)??[]; //el resultado puede ser vacio
     setState(() {
       comics=comics; //actualizo la variable
     });

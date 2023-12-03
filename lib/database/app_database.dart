@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class PokemonDatabase{
+class AppDatabase{
 
   final int version=1;
   final String databaseName="SuperComic.db";
