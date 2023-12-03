@@ -22,4 +22,26 @@ class Comic {
     intelligence = json['powerstats']['intelligence'].toString(),
     image = json['image']['url'].toString();
 
+  //retorna un mapa con los datos que se tenga en esta clase
+  //para el repository
+  Map<String,dynamic> toMap(){
+    return {
+      'id':id,
+      'name':name,
+      'gender': gender,
+      'intelligence':intelligence,
+      'image': image
+    };
+  }
+
+  //convierte un map a objeto
+  //sirve para que convierta lo que devuleve la tabla de nuestra base de datos creada
+  //para el getAll()
+  Comic.fromMap(Map<String, dynamic>map):
+        id=map['id'],
+        name=map["name"],
+        gender=map["gender"],
+        intelligence= map["intelligence"],
+        image= map["image"];
+
 }
