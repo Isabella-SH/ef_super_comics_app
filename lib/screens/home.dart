@@ -16,7 +16,11 @@ class _HomeState extends State<Home> {
   int _selectedTab=0;
 
   final List<Widget> _children=[
-    const Comics(),
+
+    Center(
+      child: Image.network("https://pe.salvat.com/dccollection/res/img/main-content-heroes.png"),
+    ),
+
     const SearchComics(),
     const ComicsFavorites()
   ];
@@ -42,7 +46,7 @@ class _HomeState extends State<Home> {
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.grey,
         items: const[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: "Branding"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites")
         ],

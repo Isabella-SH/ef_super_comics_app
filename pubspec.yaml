@@ -25,5 +25,18 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
+  #para el icono 1ª
+  flutter_launcher_icons: ^0.13.1
+
 flutter:
   uses-material-design: true
+
+  #para el icono 2ª
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/shared/icon.png"
+
+  #para el icono 3ª
+                         #en el terminal ejecutar antes de hacer get a las dependencias:
+  #flutter pub run flutter_launcher_icons:main
